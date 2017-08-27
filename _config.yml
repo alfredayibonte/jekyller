@@ -10,11 +10,11 @@ default_lang: en
 default_body_class: list
 
 author:
-    name: Yours Truly
-    # url:  http://example.com/
+    name: Alfred Ayi-Bonte
+    url:  http://github.com/alfredayibonte
     company:
-        name: Famous Inc.
-        # url:  http://example.com/
+        name: mPharma Inc.
+        url:  http://mpharma.com/
 
 fork_url: https://github.com/shower/shower
 progress: true
