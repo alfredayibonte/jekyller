@@ -13,4 +13,4 @@ style: |
 # Presentation Slides
 
 
-- [es6](/2017-08-31-es6)
+- [es6](/presetations/2017-08-31-es6)
