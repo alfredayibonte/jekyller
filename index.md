@@ -1,7 +1,5 @@
 ---
 
-layout: ribbon
-
 style: |
 
     #Cover h2 {
@@ -12,4 +10,7 @@ style: |
         }
 ---
 
-# Hello world {#Cover}
+# Presentation Slides
+
+
+- [es6](/2017-08-31-es6)
