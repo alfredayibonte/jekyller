@@ -11,6 +11,9 @@ style: |
         font-size:200px;
         background: #FADE34;
         }
+    div > h3 {
+        font-weight: bold;
+    }
     section#Cover {
         background: #FADE34;
     }
@@ -60,15 +63,17 @@ style: |
 
 ## Topics
 
-1. Basic explanation of ES6
-2. const & let / Block Scope
-3. Classes & inheritance
-4. Destructuring
-5. Modules
-6. Iterators / Generators / Collections
-7. Promises
-8. Literals / interpolation
-9. Arrow Functions
+- Basic explanation of ES6
+- const & let / Block Scope
+- Classes & inheritance
+- Destructuring
+- Modules
+
+## Topics
+- Iterators / Generators / Collections
+- Promises
+- Literals / interpolation
+- Arrow Functions
 
 
 ## Getting Started
@@ -81,4 +86,202 @@ Install the chrome extension [Scratch Js](https://chrome.google.com/webstore/det
 
 ## Jump straight into Code
 
-1.
+```
+const name = 'James'
+name = 'Nick' //??
+let age = 5;
+age = 10;
+
+for(let i=0 ; i < 5 ; i++){
+    console.log(i);
+}
+```
+
+## Classes
+
+
+```js
+class Animal {              class Cat extends Animal {
+    constructor(name){          constructor(name, sex){
+        this.name = name;           super(name);
+    }                               this.sex = sex;
+}                               }
+                             }
+
+const animal = new Cat('Cat1', 'hermaphrodite');
+animal.name // ?
+animal.sex // ?
+
+```
+
+## Destructuring / unpacking / Spread Operation
+
+<p>To get the values from our Cat instance</p>
+`const { name, sex } = animal;`
+
+{:.note}
+NB. const animal = new Cat('Cat1', 'hermaphrodite'); 
+
+{:.note}
+same as   const animal = { name: 'Cat1', sex: 'hermaphrodite' }<br/>
+
+
+## More on Destructuring
+- Array destructuring
+  * `const [a, b] = [1, 2];` 
+  * `const [a, ...rest] = [1, 2, 3, 5];`
+
+## Advance form of Destructuring
+
+`cont [a, [b, [c, d]]] = [1, [2, [[[3, 4], 5], 6]]];`
+console.log("a:", a, "b:", b, "c:", c, "d:", d);
+
+## Spread Operation
+
+```
+const state = { name: 'Cat1', sex: 'hermaphrodite' };
+const newState =  {
+  ...state,
+  name: 'Joh Doe',
+}
+ console.log(state.name) ??
+```
+
+## Modules
+
+```
+//  lib/math.js
+export function sum (x, y) { return x + y }
+export var pi = 3.141593
+
+//  someApp.js
+import * as math from "lib/math"
+console.log("2π = " + math.sum(math.pi, math.pi))
+
+```
+
+## otherApp.js
+
+```
+//  otherApp.js
+import { sum, pi } from "lib/math"
+console.log("2π = " + sum(pi, pi))
+```
+
+## Still on Modules & imports
+
+```
+//  lib/mathplusplus.js
+export * from "lib/math"
+export var e = 2.71828182846
+export default (x) => Math.exp(x)
+
+//  someApp.js
+import exp, { pi, e } from "lib/mathplusplus"
+console.log("e^{π} = " + exp(pi))
+```
+
+## Generators / Collections & Iterators
+```
+function *mygen () {
+   var myVal = yield 12;
+   return myVal * 2;
+}
+const myIt = mygen();
+const firstGenValue = myIt.next().value;
+// Generator is paused and yields the first value
+const result = myIt.next(firstGenValue * 2).value;
+console.log(result); // 48
+```
+
+## Iterators
+```
+function makeIterator(array) {
+    var nextIndex = 0;
+    return {
+       next: function() {
+           return nextIndex < array.length ?
+               {value: array[nextIndex++], done: false} :
+               {done: true};
+       }
+    };
+}
+```
+
+## Solution
+
+```
+var it = makeIterator(['yo', 'ya']);
+console.log(it.next().value); // 'yo'
+console.log(it.next().value); // 'ya'
+console.log(it.next().done);  // true
+```
+
+## Iterators
+```
+let fibonacci = {
+    [Symbol.iterator]() {
+        let pre = 0, cur = 1
+        return {
+           next () {
+               [ pre, cur ] = [ cur, pre + cur ]
+               return { done: false, value: cur }
+           }
+        }
+    }
+}
+
+```
+
+## Example
+
+```
+for (let n of fibonacci) {
+    if (n > 1000)
+        break
+    console.log(n)
+}
+```
+
+
+## Promises
+```
+function msgAfterTimeout (msg, who, timeout) {
+  return new Promise((resolve, reject) => {
+  setTimeout(() => resolve(`${msg} Hello ${who}!`), timeout)
+  })
+}
+msgAfterTimeout("", "Foo", 100).then((msg) =>
+    msgAfterTimeout(msg, "Bar", 200)
+  ).then((msg) => {console.log(`done after 300ms:${msg}`)}
+)
+```
+
+
+## Literals / interpolation
+<p>const first_key = 'name';</p>
+<p>const second_key = 'sex';</p>
+<p>const full_name = `${first_key}   ${second_key}`;</p>
+`const animal = { [first_key]: 'Cat1', [second_key]: 'Red' }`
+
+
+## Arrow Functions
+const sqrt = x => x*x;          var sqrt = function(x) {
+                                  return x * x
+                                }
+<p>const someFunction = x => y => x*y</p>
+<p>what is someFunction(4) ??</p>
+
+{:.note}
+{ name } is the same as saying { name: name }
+
+## Answer
+<p>someFunction(4) = y => 4*y</p>
+<p> someFunction(4)(3) = 3 => 4*3 == 12 </p>
+
+
+## References
+
+- [official javascript page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/)
+- [es6features by lukehoban](https://github.com/lukehoban/es6features#classes)
+- [es6 features dot org](http://es6-features.org/#Constants)
