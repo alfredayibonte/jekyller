@@ -1,3 +1,4 @@
-This repo is a record of tech presentations by [me](https://github.com/alfredayibonte).
+This repo is a record of some tech presentations by [me](https://github.com/alfredayibonte).
 
-Click [here](https://alfredayibonte.github.io/presentations/?full#Cover) to see list
+- [ES6](https://alfredayibonte.github.io/presentations/?full#Cover)
+- [react Storybook](https://alfredayibonte.github.io/storybook/)
